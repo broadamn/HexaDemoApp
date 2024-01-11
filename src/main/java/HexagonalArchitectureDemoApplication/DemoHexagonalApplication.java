@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 public class DemoHexagonalApplication {
 
     private final ComponentInputPort componentInputPort;
-
     public static void main(String[] args) {
         SpringApplication.run(DemoHexagonalApplication.class, args);
     }
