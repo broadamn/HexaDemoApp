@@ -5,26 +5,30 @@ import HexagonalArchitectureDemoApplication.adapter.in.web.dto.ComponentOutDTO;
 import HexagonalArchitectureDemoApplication.application.port.in.ComponentInputPort;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
 @AllArgsConstructor
-@RestController
-@RequestMapping("/api/pccomponents")
+@Controller
+@RequestMapping("/")
 public class WebAdapter {
 
     private final ComponentInputPort componentInputPort;
 
     @GetMapping
-    public Collection<ComponentOutDTO> getAllComponents() {
-        return componentInputPort.getAllComponents();
+    public String getAllComponents(Model model) {
+        Collection<ComponentOutDTO> components = componentInputPort.getAllComponents();
+        model.addAttribute("components", components);
+        return "ComponentsPage";
     }
 
     @GetMapping("/{componentId}")
-    public ComponentOutDTO getComponentById(@PathVariable Integer componentId) {
-        return componentInputPort.getById(componentId);
-    }
+    public String getComponentById(@PathVariable Integer componentId, Model model) {
+        model.addAttribute("component", componentInputPort.getById(componentId));
+        return "ComponentsPage";    }
 
     @PostMapping("/purchase/{componentId}")
     public String purchaseComponent(@PathVariable Integer componentId, @RequestParam Integer amount) {

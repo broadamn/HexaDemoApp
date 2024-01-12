@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Component Information</title>
+</head>
+<body>
+<h1>Component Information</h1>
+
+<!-- Component Details -->
+<div th:if="${component != null}">
+    <h2>Component Details</h2>
+    <p>ID: <span th:text="${component.id}"></span></p>
+    <p>Name: <span th:text="${component.name}"></span></p>
+    <p>Description: <span th:text="${component.description}"></span></p>
+    <p>Price: <span th:text="${component.price}"></span></p>
+    <p>Available: <span th:text="${component.stock}"></span></p>
+    <p>Category: <span th:text="${component.category}"></span></p>
+</div>
+
+<!-- Component List -->
+<div th:if="${components != null}">
+    <h2>Component List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Available pieces</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="component : ${components}">
+            <td th:text="${component.id}"></td>
+            <td th:text="${component.name}"></td>
+            <td th:text="${component.description}"></td>
+            <td th:text="${component.price}"></td>
+            <td th:text="${component.stock}"></td>
+            <td th:text="${component.category}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:if="${component == null and components == null}">
+    <h2>There are no components in the database</h2>
+</div>
+
+</body>
+</html>
