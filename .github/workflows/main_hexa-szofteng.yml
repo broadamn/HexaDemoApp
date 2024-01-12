@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/build/libs'
+          path: '${{ github.workspace }}/build/libs/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'Hexa-szofteng'
           slot-name: 'Production'
-          package: '*.jar'
+          package: 'HexaDemoApplication.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_299F7D43E48C434E92C5D1BE47B040B6 }}
