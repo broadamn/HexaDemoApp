@@ -1,0 +1,8 @@
+jdbc:
+    url: jdbc:mysql://hexademoserver.mysql.database.azure.com:3306/componentdb
+    username: adamAdmin
+    password: Azenjelszom1234
+    driverClassName: com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.show-sql: false
+
